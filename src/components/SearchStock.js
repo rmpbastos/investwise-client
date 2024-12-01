@@ -13,7 +13,11 @@ const SearchStock = ({ setPortfolio }) => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`/api/search/${query}`);
+      // const response = await axios.get(`/api/search/${query}`);
+
+      // Deployment
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/search/${query}`);
+
       setSearchResults(response.data);
     } catch (error) {
       console.error("Error fetching search results:", error);
