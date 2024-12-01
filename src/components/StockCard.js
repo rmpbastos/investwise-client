@@ -64,7 +64,16 @@ const StockCard = ({ stock, onClick }) => {
         predictionPayload
       );
 
-      const response = await fetch("/api/predict", {
+      // const response = await fetch("/api/predict", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(predictionPayload),
+      // });
+
+      // Deployment
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/predict`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
