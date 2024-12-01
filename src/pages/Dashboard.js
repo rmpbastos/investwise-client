@@ -27,9 +27,13 @@ const Dashboard = () => {
       setLoading(true);
 
       // Fetch updated total wealth and total invested using /api/total-wealth/:userId
-      const wealthResponse = await axios.get(
-        `/api/total-wealth/${currentUser.uid}`
-      );
+      // const wealthResponse = await axios.get(
+      //   `/api/total-wealth/${currentUser.uid}`
+      // );
+
+      // Deployment
+      const wealthResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/total-wealth/${currentUser.uid}`);
+
       const fetchedTotalWealth = wealthResponse.data.totalWealth || 0;
       const fetchedTotalInvested = wealthResponse.data.totalInvested || 0;
 
@@ -37,9 +41,13 @@ const Dashboard = () => {
       setTotalInvested(fetchedTotalInvested);
 
       // Fetch aggregated portfolio
-      const response = await axios.get(
-        `/api/portfolio/aggregate/${currentUser.uid}`
-      );
+      // const response = await axios.get(
+      //   `/api/portfolio/aggregate/${currentUser.uid}`
+      // );
+
+      // Deployment
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/portfolio/aggregate/${currentUser.uid}`);
+
       const aggregatedPortfolio = response.data;
 
       // Fetch latest price and sentiment for each stock in the portfolio

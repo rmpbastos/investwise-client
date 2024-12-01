@@ -20,7 +20,17 @@ const Signup = () => {
       );
       const user = userCredential.user;
 
-      await axios.post("/api/user-profile/create", {
+      // await axios.post("/api/user-profile/create", {
+      //   userId: user.uid,
+      //   email: user.email,
+      //   firstName: "",
+      //   lastName: "",
+      //   phone: "",
+      //   address: "",
+      // });
+
+      // Deployment
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/user-profile/create`, {
         userId: user.uid,
         email: user.email,
         firstName: "",
@@ -29,7 +39,14 @@ const Signup = () => {
         address: "",
       });
 
-      await axios.post("/api/total-wealth/create", {
+      // await axios.post("/api/total-wealth/create", {
+      //   userId: user.uid,
+      //   totalWealth: 0,
+      //   totalInvested: 0,
+      // });
+
+      // Deployment
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/total-wealth/create`, {
         userId: user.uid,
         totalWealth: 0,
         totalInvested: 0,
@@ -58,7 +75,17 @@ const Signup = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      await axios.post("/api/user-profile/create", {
+      // await axios.post("/api/user-profile/create", {
+      //   userId: user.uid,
+      //   email: user.email,
+      //   firstName: "",
+      //   lastName: "",
+      //   phone: "",
+      //   address: "",
+      // });
+
+      // Deployment
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/user-profile/create`, {
         userId: user.uid,
         email: user.email,
         firstName: "",
@@ -67,7 +94,14 @@ const Signup = () => {
         address: "",
       });
 
-      await axios.post("/api/total-wealth/create", {
+      // await axios.post("/api/total-wealth/create", {
+      //   userId: user.uid,
+      //   totalWealth: 0,
+      //   totalInvested: 0,
+      // });
+
+      // Deployment
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/total-wealth/create`, {
         userId: user.uid,
         totalWealth: 0,
         totalInvested: 0,

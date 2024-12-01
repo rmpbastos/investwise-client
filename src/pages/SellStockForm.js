@@ -34,7 +34,11 @@ const SellStockForm = () => {
     };
 
     try {
-      const response = await axios.post("/api/portfolio/sell", saleData);
+      // const response = await axios.post("/api/portfolio/sell", saleData);
+
+      // Deployment
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/portfolio/sell`, saleData);
+
       console.log("Stock sale recorded successfully:", response.data);
       navigate("/dashboard");
     } catch (error) {

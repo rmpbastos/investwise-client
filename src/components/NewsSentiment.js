@@ -35,7 +35,13 @@ const NewsSentiment = ({ userId }) => {
         setLoading(true);
 
         // Step 1: Fetch portfolio to get tickers
-        const portfolioResponse = await axios.get(`/api/portfolio/${userId}`);
+        // const portfolioResponse = await axios.get(`/api/portfolio/${userId}`);
+
+        // Deployment
+        const portfolioResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/portfolio/${userId}`);
+
+
+
         const portfolioStocks = portfolioResponse.data;
 
         const tickers = portfolioStocks.map((stock) => stock.ticker);
@@ -47,9 +53,14 @@ const NewsSentiment = ({ userId }) => {
         }
 
         // Step 2: Fetch news sentiment for each ticker
-        const newsResponse = await axios.post("/api/news-sentiment", {
-          tickers,
-        });
+        // const newsResponse = await axios.post("/api/news-sentiment", {
+        //   tickers,
+        // });
+
+        // Deployment
+        const newsResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/news-sentiment`, { tickers });
+
+
         const newsByTickerRaw = newsResponse.data;
 
         // Limit each ticker to 10 articles

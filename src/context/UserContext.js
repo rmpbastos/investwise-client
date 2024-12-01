@@ -32,9 +32,14 @@ export const AuthProvider = ({ children }) => {
       }
 
       console.log(`Fetching new data for ${ticker}`);
-      const priceResponse = await axios.post(`/api/stock/latest/${ticker}`);
-      const sentimentResponse = await axios.post(`/api/stock/sentiment/${ticker}`);
-      const intradayResponse = await axios.post(`/api/stock/intraday/${ticker}`);
+      // const priceResponse = await axios.post(`/api/stock/latest/${ticker}`);
+      // const sentimentResponse = await axios.post(`/api/stock/sentiment/${ticker}`);
+      // const intradayResponse = await axios.post(`/api/stock/intraday/${ticker}`);
+
+      // Deployment
+      const priceResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/stock/latest/${ ticker }`);
+      const sentimentResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/stock/sentiment/${ ticker }`);
+      const intradayResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/stock/intraday/${ ticker }`);
 
       const data = {
         price: priceResponse.data,
@@ -61,13 +66,23 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const wealthResponse = await axios.post(`/api/total-wealth/update`, {
+      // const wealthResponse = await axios.post(`/api/total-wealth/update`, {
+      //   userId: currentUser.uid,
+      // });
+
+      // Deployment
+      const wealthResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/total-wealth/update`, {
         userId: currentUser.uid,
       });
+      
       const totalWealth = wealthResponse.data.totalWealth || 0;
       const totalInvested = wealthResponse.data.totalInvested || 0;
 
-      const portfolioResponse = await axios.get(`/api/portfolio/aggregate/${currentUser.uid}`);
+      // const portfolioResponse = await axios.get(`/api/portfolio/aggregate/${currentUser.uid}`);
+
+      // Deployment
+      const portfolioResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/portfolio/aggregate/${currentUser.uid}`);
+
       const portfolioData = portfolioResponse.data;
 
       return { portfolioData, totalWealth, totalInvested };

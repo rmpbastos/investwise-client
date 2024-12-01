@@ -25,7 +25,11 @@ const SearchStock = ({ setPortfolio }) => {
   
     try {
       // Update total wealth after adding the stock
-      await axios.post(`/api/total-wealth/update`, { userId: currentUser.uid });
+      // await axios.post(`/api/total-wealth/update`, { userId: currentUser.uid });
+
+      // Deployment
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/total-wealth/update`, { userId: currentUser.uid });
+
       console.log("Total wealth updated after adding stock to portfolio.");
     } catch (error) {
       console.error("Error updating total wealth after adding stock:", error);

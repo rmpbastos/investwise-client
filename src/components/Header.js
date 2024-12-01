@@ -33,8 +33,13 @@ const Header = ({ setPortfolio }) => {
       if (!currentUser) return;
 
       try {
+        // const response = await axios.get(
+        //   `/api/total-wealth/${currentUser.uid}`
+        // );
+
+        // Deployment
         const response = await axios.get(
-          `/api/total-wealth/${currentUser.uid}`
+          `${process.env.REACT_APP_API_URL}/api/total-wealth/${currentUser.uid}`
         );
 
         if (response.data) {

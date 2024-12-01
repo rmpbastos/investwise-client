@@ -17,7 +17,10 @@ const StockDetails = () => {
         if (!currentUser) return; // Wait until currentUser is available
 
         // Fetch all stocks for the user
-        const response = await axios.get(`/api/portfolio/${currentUser.uid}`);
+        // const response = await axios.get(`/api/portfolio/${currentUser.uid}`);
+
+        // Deployment
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/portfolio/${currentUser.uid}`);
 
         // Filter stocks that match the selected ticker
         const filteredStocks = response.data.filter(

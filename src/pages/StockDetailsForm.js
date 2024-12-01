@@ -30,11 +30,18 @@ const StockDetailsForm = () => {
   
     try {
       // Add stock details to portfolio
-      await axios.post("/api/portfolio/addDetails", stockDetails);
+      // await axios.post("/api/portfolio/addDetails", stockDetails);
+
+      // Deployment
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/portfolio/addDetails`, stockDetails);
+
       console.log("Stock details added to portfolio.");
   
       // Call the total wealth update route
-      const updateResponse = await axios.post("/api/total-wealth/update", { userId });
+      // const updateResponse = await axios.post("/api/total-wealth/update", { userId });
+
+      // Deployment
+      const updateResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/total-wealth/update`, { userId });
   
       if (updateResponse.data.totalWealth !== undefined) {
         console.log("Total wealth updated successfully:", updateResponse.data.totalWealth);

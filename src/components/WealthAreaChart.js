@@ -33,9 +33,13 @@ const WealthAreaChart = () => {
   useEffect(() => {
     const fetchWealthHistory = async () => {
       try {
-        const response = await axios.get(
-          `/api/total-wealth/history/${currentUser.uid}`
-        );
+        // const response = await axios.get(
+        //   `/api/total-wealth/history/${currentUser.uid}`
+        // );
+
+        // Deployment
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/total-wealth/history/${currentUser.uid}`);
+
         const wealthData = response.data;
 
         // Extract labels, total wealth, and total invested
