@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add some background and global styles */
+body {
+  @apply bg-gray-100;
+}
+
+h1, h2, h3 {
+  @apply font-semibold text-gray-800;
+}
+
+p {
+  @apply text-gray-600;
+}
+
+.grid {
+  margin-top: 1rem;
+}
+
+.chart-container {
+  min-width: 400px;
+  max-width: 800px;
+  min-height: 300px;
+  max-height: 400px;
+}
